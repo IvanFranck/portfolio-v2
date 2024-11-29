@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    :root {
+        --background: #2b2b33; 
+        --background-foreground: #f3f2f9;
+        --primary-foreground: #aab2d1;
+        --primary: #606887;
+        --stroke-primary: #f3f2f9;
+        --stroke-foreground: #606887;
+    }
+}
+
+@layer base {
+    body {
+        @apply bg-background text-stroke-primary dark:text-stroke-primary-foreground;
+    }
+}
+
+@layer components {
+    .heading-h1 {
+        @apply text-4xl md:text-5xl lg:text-7xl font-extrabold uppercase text-stroke-primary dark:text-stroke-primary-foreground;
+    }
+    .heading-h2 {
+        @apply text-2xl lg:text-5xl md:text-4xl font-extrabold;
+    }
+    .icons-style {
+        @apply stroke-primary dark:stroke-primary-foreground;
+        opacity: 1;
+        fill: none;
+        stroke-width: 2px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-miterlimit: 10;
+        display: block;
+    }
+}
