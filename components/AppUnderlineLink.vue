@@ -1,6 +1,9 @@
 <template>
     <div class="underline-link">
-        <div class="link-item__inner">
+        <div 
+            :class="wrapperClass" 
+            class="link-item__inner"
+        >
             <div @mouseenter="handleMenuhMouseEnter" @mouseleave="handleMenuhMouseLeave" class="link">
                 <NuxtLink class="link" :to="to" :target="external ? '_blank' : undefined"><slot/></NuxtLink>
             </div>
@@ -10,18 +13,13 @@
 </template>
 
 <script setup lang="ts">
+
 import {gsap} from "gsap";
 
 defineProps({
   to: { type: String, required: true },
   external: { type: Boolean, default: false },
-})
-
-onUpdated(() => {
-    gsap.fromTo(".link-item__inner",
-        {y: -100},
-        {y: 0, duration: 0.5, ease: "power4.out", stagger: 0.1}
-    )
+  wrapperClass: { type: String, required: false },
 })
 
 function handleMenuhMouseEnter(event: MouseEvent) {
@@ -39,16 +37,3 @@ function handleMenuhMouseLeave(event: MouseEvent) {
 }
 
 </script>
-
-<style scoped>
-.underline-link .link-underline{
-    @apply w-full relative h-[1px] lg:h-[2px] bg-stroke-primary dark:bg-stroke-primary-foreground mt-1 
-    origin-bottom-right -translate-x-[101%];
-}
-.underline-link .link {
-    @apply lowercase font-thin text-base md:text-xl lg:text-3xl cursor-pointer;
-}
-.underline-link {
-    @apply overflow-hidden relative pr-5;
-}
-</style>

@@ -2,7 +2,9 @@
     <header class="fixed w-full z-20 top-6 md:top-12 lg:top-24 left-0 right-0">
         <div class="w-full flex justify-between px-6 md:px-12 lg:px-24 items-center">
             <div role="logo" class="font-cursive text-primary md:text-5xl sm:text-4xl text-2xl">
-                Nzima Ivan
+                <NuxtLink to="/">
+                    Nzima Ivan
+                </NuxtLink> 
             </div>
             <div>
                 <ul class="list-none flex items-center gap-6"> 
