@@ -35,6 +35,11 @@
     .heading-h2 {
         @apply text-2xl lg:text-5xl md:text-4xl font-extrabold;
     }
+
+    .heading-h3 {
+        @apply text-xl lg:text-3xl md:text-2xl font-medium;
+    }
+
     .icons-style {
         @apply stroke-primary dark:stroke-primary-foreground;
         opacity: 1;

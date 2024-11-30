@@ -15,14 +15,17 @@
                         <hr class="stroke w-full mt-7">
                     </div>
                     <ul class="flex flex-col list-none">
-                        <li class="">
+                        <li>
                             <NuxtLink to="/projects/1">
                                 <div class="project-row" @mouseenter="handleProjectRowMouseEnter" @mouseleave="handleProjectRowMouseLeave">
                                     <div class="project-row__left">
                                         <div class="project-row__left__arrow-wrapper">
-                                            <div class="project-row__left__arrow heading-h2">→</div>
+                                            <div class="project-row__left__arrow heading-h3">→</div>
                                         </div>
-                                        <h2 class="project-row__title heading-h2">My portfolio</h2>
+                                        <h2 class="project-row__title heading-h3">My portfolio</h2>
+                                    </div>
+                                    <div class="project-row__right">
+                                        <p class="project-row__category">Web Development</p>
                                     </div>
                                 </div>
                             </NuxtLink>
@@ -42,13 +45,19 @@ function handleProjectRowMouseEnter(event: MouseEvent) {
     const target = event.currentTarget as HTMLElement;
     if (!target) return;
     const arrow = target.getElementsByClassName('project-row__left__arrow')[0];
-    gsap.to(arrow, {x: 0, duration: 0.3})
+    const title = target.getElementsByClassName('project-row__title')[0];
+    if (!arrow || !title) return;
+    gsap.to(arrow, {x: 0, duration: 0.4, ease: "sine.inOut"});
+    gsap.to(title, {x: 30, duration: 0.3});
 }
 function handleProjectRowMouseLeave(event: MouseEvent) {
     const target = event.currentTarget as HTMLElement;
     if (!target) return;
     const arrow = target.getElementsByClassName('project-row__left__arrow')[0];
-    gsap.to(arrow, {x: '-100%', duration: 0.3})
+    const title = target.getElementsByClassName('project-row__title')[0];
+    if (!arrow || !title) return;
+    gsap.to(arrow, {x: '-100%', duration: 0.3});
+    gsap.to(title, {x: 0, duration: 0.3});
 }
 
 
@@ -71,8 +80,16 @@ function handleProjectRowMouseLeave(event: MouseEvent) {
     }
 
     &__title {
+        @apply text-ellipsis text-nowrap overflow-hidden mr-6;
     }
 
+    &__right {
+        @apply w-full text-right ;
+    }
+    
+    &__category {
+        @apply text-ellipsis text-nowrap overflow-hidden;
+    }
     
 }
 </style>
