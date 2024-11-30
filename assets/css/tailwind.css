@@ -22,6 +22,10 @@
     #home .underline-link {
         @apply sm:text-left !text-center;
     }
+
+    main .content-wrapper {
+        @apply w-full h-full pt-24 md:pt-36 lg:pt-[15rem];
+    }
 }
 
 @layer components {
@@ -42,9 +46,12 @@
         display: block;
     }
 
+    .stroke {
+        @apply h-[1px] lg:h-[2px] bg-stroke-primary dark:bg-stroke-primary-foreground;
+    }
+
     .underline-link .link-underline{
-        @apply w-full relative h-[1px] lg:h-[2px] bg-stroke-primary dark:bg-stroke-primary-foreground mt-1 
-        origin-bottom-right -translate-x-[101%];
+        @apply w-full relative stroke mt-1 origin-bottom-right -translate-x-[101%];
     }
     .underline-link .link {
         @apply lowercase font-thin text-base md:text-xl lg:text-3xl cursor-pointer;

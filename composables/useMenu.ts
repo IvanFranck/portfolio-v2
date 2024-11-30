@@ -4,8 +4,13 @@ export default function() {
         showMenu.value = !showMenu.value;
     }
 
+    const closeMenu = () => {
+        showMenu.value = false;
+    }
+
     return {
         showMenu,
-        toggleMenu
+        toggleMenu,
+        closeMenu
     }
 }

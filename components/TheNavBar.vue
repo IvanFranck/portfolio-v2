@@ -1,10 +1,12 @@
 <template>
     <header class="fixed w-full z-20 top-6 md:top-12 lg:top-24 left-0 right-0">
         <div class="w-full flex justify-between px-6 md:px-12 lg:px-24 items-center">
-            <div role="logo" class="font-cursive text-primary md:text-5xl sm:text-4xl text-2xl">
-                <NuxtLink to="/">
-                    Nzima Ivan
-                </NuxtLink> 
+            <div role="logo" class="font-cursive">
+                <span @click="closeMenu">
+                    <NuxtLink class="text-primary md:text-5xl sm:text-4xl text-2xl" to="/">
+                        Nzima Ivan
+                    </NuxtLink> 
+                </span>
             </div>
             <div>
                 <ul class="list-none flex items-center gap-6"> 
@@ -50,7 +52,7 @@
 
 <script lang="ts" setup>
 import {gsap} from "gsap";
-const { showMenu, toggleMenu } = useMenu();
+const { showMenu, toggleMenu, closeMenu } = useMenu();
 
 watch((showMenu),()=>{
     if (showMenu.value) {

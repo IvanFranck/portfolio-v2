@@ -8,32 +8,32 @@
             <div>
                 <nav>
                     <ul class="flex flex-col items-center gap-6 list-none"> 
-                        <li class="text-left w-full relative overflow-hidden">
+                        <li class="text-left w-full relative overflow-hidden pr-4">
                             <div class="link-item__inner">
-                                <h1 class="heading-h1 w-max hover:translate-x-3 transition">
+                                <span @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
                                     <NuxtLink to="/">Home</NuxtLink>
-                                </h1>
+                                </span>
                             </div>  
                         </li>
-                        <li class="text-left w-full relative overflow-hidden">
+                        <li class="text-left w-full relative overflow-hidden pr-4">
                             <div class="link-item__inner">
-                                <h1 class="heading-h1 w-max hover:translate-x-3 transition">
+                                <span @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
                                     <NuxtLink to="/about">Projets</NuxtLink>
-                                </h1>
+                                </span>
                             </div>  
                         </li>
-                        <li class="text-left w-full relative overflow-hidden">
+                        <li class="text-left w-full relative overflow-hidden pr-4">
                             <div class="link-item__inner">
-                                <h1 class="heading-h1 w-max hover:translate-x-3 transition">
+                                <span @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
                                     <NuxtLink to="/projects">À propos</NuxtLink>
-                                </h1>
+                                </span>
                             </div>  
                         </li>
-                        <li class="text-left w-full relative overflow-hidden">
+                        <li class="text-left w-full relative overflow-hidden pr-4">
                             <div class="link-item__inner">
-                                <h1 class="heading-h1 w-max hover:translate-x-3 transition">
+                                <span @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
                                     <NuxtLink to="/contact">Contact</NuxtLink>
-                                </h1>
+                                </span>
                             </div>  
                         </li>
                     </ul>
@@ -55,6 +55,7 @@
 
 <script setup>
 import {gsap} from "gsap";
+const { closeMenu } = useMenu();
 
 onUpdated(() => {
     gsap.fromTo("#menu .link-item__inner",
