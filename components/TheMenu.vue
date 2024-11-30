@@ -10,30 +10,30 @@
                     <ul class="flex flex-col items-center gap-6 list-none"> 
                         <li class="text-left w-full relative overflow-hidden pr-4">
                             <div class="link-item__inner">
-                                <span @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
+                                <div @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
                                     <NuxtLink to="/">Home</NuxtLink>
-                                </span>
+                                </div>
                             </div>  
                         </li>
                         <li class="text-left w-full relative overflow-hidden pr-4">
                             <div class="link-item__inner">
-                                <span @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
+                                <div @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
                                     <NuxtLink to="/about">Projets</NuxtLink>
-                                </span>
+                                </div>
                             </div>  
                         </li>
                         <li class="text-left w-full relative overflow-hidden pr-4">
                             <div class="link-item__inner">
-                                <span @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
+                                <div @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
                                     <NuxtLink to="/projects">À propos</NuxtLink>
-                                </span>
+                                </div>
                             </div>  
                         </li>
                         <li class="text-left w-full relative overflow-hidden pr-4">
                             <div class="link-item__inner">
-                                <span @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
+                                <div @click="closeMenu" class="heading-h1 w-max hover:translate-x-3 transition">
                                     <NuxtLink to="/contact">Contact</NuxtLink>
-                                </span>
+                                </div>
                             </div>  
                         </li>
                     </ul>
