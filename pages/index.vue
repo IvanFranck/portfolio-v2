@@ -4,7 +4,7 @@
             <h1 class="heading-h1 text-center home-block">
                 YO! Je suis <span class="uppercase">NZIMA Ivan</span>
             </h1>
-            <p class="text-primary dark:text-primary-foreground text-center font-normal text-xl md:text-2xl lg:text-4xl mt-5 home-block">
+            <p class="text-primary dark:text-primary-foreground text-center font-normal text-xl md:text-2xl lg:text-4xl mt-5 home-block font-sans">
                 Développeur web full TS & <br> aspirant cloud Engineer
             </p>
         </div>
