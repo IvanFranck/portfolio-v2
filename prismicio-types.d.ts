@@ -4,49 +4,49 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type BlogpostDocumentDataSlicesSlice = AlternateGridSlice;
+type ProjectDocumentDataSlicesSlice = never;
 
 /**
- * Content for BlogPost documents
+ * Content for project documents
  */
-interface BlogpostDocumentData {
+interface ProjectDocumentData {
   /**
-   * Slice Zone field in *BlogPost*
+   * Slice Zone field in *project*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: blogpost.slices[]
+   * - **API ID Path**: project.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<BlogpostDocumentDataSlicesSlice> /**
-   * Meta Title field in *BlogPost*
+  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice> /**
+   * Meta Title field in *project*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: blogpost.meta_title
+   * - **API ID Path**: project.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */;
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *BlogPost*
+   * Meta Description field in *project*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: blogpost.meta_description
+   * - **API ID Path**: project.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *BlogPost*
+   * Meta Image field in *project*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: blogpost.meta_image
+   * - **API ID Path**: project.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -54,22 +54,158 @@ interface BlogpostDocumentData {
 }
 
 /**
- * BlogPost document from Prismic
+ * project document from Prismic
  *
- * - **API ID**: `blogpost`
+ * - **API ID**: `project`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type BlogpostDocument<Lang extends string = string> =
+export type ProjectDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<BlogpostDocumentData>,
-    "blogpost",
+    Simplify<ProjectDocumentData>,
+    "project",
     Lang
   >;
 
-interface SettingsDocumentData {}
+/**
+ * Content for Project Category documents
+ */
+interface ProjectCategoryDocumentData {
+  /**
+   * Category tag field in *Project Category*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_category.category_tag
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  category_tag: prismic.SelectField<"AWS DynamoDB" | "AWS Lambda">;
+}
+
+/**
+ * Project Category document from Prismic
+ *
+ * - **API ID**: `project_category`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectCategoryDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProjectCategoryDocumentData>,
+    "project_category",
+    Lang
+  >;
+
+/**
+ * Content for project item documents
+ */
+interface ProjectItemDocumentData {
+  /**
+   * title field in *project item*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_item.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+}
+
+/**
+ * project item document from Prismic
+ *
+ * - **API ID**: `project_item`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectItemDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProjectItemDocumentData>,
+    "project_item",
+    Lang
+  >;
+
+/**
+ * Item in *Settings → Navigation*
+ */
+export interface SettingsDocumentDataNavigationItem {
+  /**
+   * Link field in *Settings → Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *Settings → Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Content for Settings documents
+ */
+interface SettingsDocumentData {
+  /**
+   * Site title field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.site_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  site_title: prismic.KeyTextField;
+
+  /**
+   * Meta description field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.meta_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * OG Image field in *Settings*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.og_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  og_image: prismic.ImageField<never>;
+
+  /**
+   * Navigation field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.navigation[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+}
 
 /**
  * Settings document from Prismic
@@ -87,7 +223,123 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = BlogpostDocument | SettingsDocument;
+export type AllDocumentTypes =
+  | ProjectDocument
+  | ProjectCategoryDocument
+  | ProjectItemDocument
+  | SettingsDocument;
+
+/**
+ * Item in *ProjectDetails → Default → Primary → Others Details*
+ */
+export interface ProjectDetailsSliceDefaultPrimaryOthersDetailsItem {
+  /**
+   * Type field in *ProjectDetails → Default → Primary → Others Details*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.others_details[].type
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  type: prismic.KeyTextField;
+
+  /**
+   * Value field in *ProjectDetails → Default → Primary → Others Details*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.others_details[].value
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  value: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ProjectDetails → Default → Primary*
+ */
+export interface ProjectDetailsSliceDefaultPrimary {
+  /**
+   * Title field in *ProjectDetails → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Summary field in *ProjectDetails → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.summary
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  summary: prismic.KeyTextField;
+
+  /**
+   * Categories field in *ProjectDetails → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.categories
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  categories: prismic.ContentRelationshipField<"project_category">;
+
+  /**
+   * Published Date field in *ProjectDetails → Default → Primary*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.published_date
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  published_date: prismic.DateField;
+
+  /**
+   * Others Details field in *ProjectDetails → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.others_details[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  others_details: prismic.GroupField<
+    Simplify<ProjectDetailsSliceDefaultPrimaryOthersDetailsItem>
+  >;
+}
+
+/**
+ * Default variation for ProjectDetails Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectDetailsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectDetailsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProjectDetails*
+ */
+type ProjectDetailsSliceVariation = ProjectDetailsSliceDefault;
+
+/**
+ * ProjectDetails Shared Slice
+ *
+ * - **API ID**: `project_details`
+ * - **Description**: ProjectDetails
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectDetailsSlice = prismic.SharedSlice<
+  "project_details",
+  ProjectDetailsSliceVariation
+>;
 
 declare module "@prismicio/client" {
   interface CreateClient {
@@ -110,12 +362,22 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      BlogpostDocument,
-      BlogpostDocumentData,
-      BlogpostDocumentDataSlicesSlice,
+      ProjectDocument,
+      ProjectDocumentData,
+      ProjectDocumentDataSlicesSlice,
+      ProjectCategoryDocument,
+      ProjectCategoryDocumentData,
+      ProjectItemDocument,
+      ProjectItemDocumentData,
       SettingsDocument,
       SettingsDocumentData,
+      SettingsDocumentDataNavigationItem,
       AllDocumentTypes,
+      ProjectDetailsSlice,
+      ProjectDetailsSliceDefaultPrimaryOthersDetailsItem,
+      ProjectDetailsSliceDefaultPrimary,
+      ProjectDetailsSliceVariation,
+      ProjectDetailsSliceDefault,
     };
   }
 }

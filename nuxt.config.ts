@@ -27,11 +27,7 @@ export default defineNuxtConfig({
     clientConfig: {
       routes: [
         {
-          type: 'page',
-          path: '/:uid',
-        },
-        {
-          type: 'page',
+          type: 'settings',
           uid: 'home',
           path: '/',
         },
