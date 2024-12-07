@@ -8,7 +8,9 @@
         {{ home?.data.title }}
       </h1>
       <p class="text-primary dark:text-primary-foreground text-center font-normal text-xl md:text-2xl lg:text-4xl mt-5 home-block font-sans">
-        {{ home?.data.description }}
+        <ClientOnly fallback-tag="span">
+          <PrismicRichText :field="home?.data.description" />
+        </ClientOnly>
       </p>
     </div>
 
