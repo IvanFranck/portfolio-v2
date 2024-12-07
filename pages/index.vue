@@ -5,29 +5,25 @@
   >
     <div>
       <h1 class="heading-h1 text-center home-block">
-        YO! Je suis <span class="uppercase">NZIMA Ivan</span>
+        {{ home?.data.title }}
       </h1>
       <p class="text-primary dark:text-primary-foreground text-center font-normal text-xl md:text-2xl lg:text-4xl mt-5 home-block font-sans">
-        Développeur web full TS & <br> aspirant cloud Engineer
+        {{ home?.data.description }}
       </p>
     </div>
 
     <div class="mt-12 flex justify-center">
       <ol class="list-none flex sm:flex-row flex-col sm:gap-6 gap:4">
-        <li class="lowercase font-thin text-base md:text-xl lg:text-3xl">
+        <li
+          v-for="homeLink in home?.data.links"
+          :key="`/${homeLink.label}`"
+          class="lowercase font-thin text-base md:text-xl lg:text-3xl"
+        >
           <AppUnderlineLink
             wrapper-class="home-block"
-            to="/projects"
+            :to="homeLink.link.text"
           >
-            → voir mes projets
-          </AppUnderlineLink> 
-        </li>
-        <li class="lowercase font-thin text-base md:text-xl lg:text-3xl">
-          <AppUnderlineLink
-            wrapper-class="home-block"
-            to="/about"
-          >
-            → en savoir plus sur moi
+            → {{ homeLink.label }}
           </AppUnderlineLink> 
         </li>
       </ol>
@@ -39,6 +35,12 @@
 import { gsap } from 'gsap';
 const { showMenu } = useMenu();
 const route = useRoute();
+
+const prismic = usePrismic();
+
+const { data: home} = useAsyncData('home', async () => {
+    return prismic.client.getSingle('home');
+})
 
 function animateBlocks() {
     gsap.fromTo("#home .home-block",
@@ -55,10 +57,6 @@ watch((showMenu), () => {
 
 onMounted(() => {
     animateBlocks();  
-})
-
-onUpdated(() => {
-    console.log('home updated')
 })
 
 </script>
