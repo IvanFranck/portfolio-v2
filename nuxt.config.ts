@@ -31,6 +31,11 @@ export default defineNuxtConfig({
           uid: 'home',
           path: '/',
         },
+        {
+          type: 'home',
+          uid: 'home',
+          path: '/',
+        },
       ]
     }
   }
