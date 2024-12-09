@@ -1,40 +1,54 @@
 <template>
-    <div id="projects" class="min-h-screen w-full">
-        <div class="content-wrapper">
-            <div class="w-full flex justify-between items-start">
+  <div
+    id="projects"
+    class="min-h-screen w-full"
+  >
+    <div class="content-wrapper">
+      <div class="w-full flex justify-between items-start">
+        <!-- project left -->
+        <div class="" />
 
-                <!-- project left -->
-                <div class=""></div>
-
-                <div class="md:w-1/2 w-full pl-4">
-                    <div class="w-full">
-                        <div class="w-full flex justify-between items-baseline">
-                            <h1 class="heading-h1 w-full">Projets</h1>
-                            <span class="">9</span>
-                        </div>
-                        <hr class="stroke w-full mt-7">
-                    </div>
-                    <ul class="flex flex-col list-none">
-                        <li>
-                            <NuxtLink to="/projects/1">
-                                <div class="project-row" @mouseenter="handleProjectRowMouseEnter" @mouseleave="handleProjectRowMouseLeave">
-                                    <div class="project-row__left">
-                                        <div class="project-row__left__arrow-wrapper">
-                                            <div class="project-row__left__arrow heading-h3">→</div>
-                                        </div>
-                                        <h2 class="project-row__title heading-h3">My portfolio</h2>
-                                    </div>
-                                    <div class="project-row__right">
-                                        <p class="project-row__category">Web Development</p>
-                                    </div>
-                                </div>
-                            </NuxtLink>
-                        </li>
-                    </ul>
-                </div>
+        <div class="md:w-1/2 w-full pl-4">
+          <div class="w-full">
+            <div class="w-full flex justify-between items-baseline">
+              <h1 class="heading-h1 w-full">
+                Projets
+              </h1>
+              <span class="">9</span>
             </div>
+            <hr class="stroke w-full mt-7">
+          </div>
+          <ul class="flex flex-col list-none">
+            <li>
+              <NuxtLink to="/projects/1">
+                <div
+                  class="project-row"
+                  @mouseenter="handleProjectRowMouseEnter"
+                  @mouseleave="handleProjectRowMouseLeave"
+                >
+                  <div class="project-row__left">
+                    <div class="project-row__left__arrow-wrapper">
+                      <div class="project-row__left__arrow heading-h3">
+                        →
+                      </div>
+                    </div>
+                    <h2 class="project-row__title heading-h3">
+                      My portfolio
+                    </h2>
+                  </div>
+                  <div class="project-row__right">
+                    <p class="project-row__category">
+                      Web Development
+                    </p>
+                  </div>
+                </div>
+              </NuxtLink>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">

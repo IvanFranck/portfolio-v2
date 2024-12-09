@@ -11,6 +11,28 @@ type AboutMeDocumentDataSlicesSlice = never;
  */
 interface AboutMeDocumentData {
   /**
+   * Title field in *About me*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_me.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *About me*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_me.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
    * Slice Zone field in *About me*
    *
    * - **Field Type**: Slice Zone
@@ -63,11 +85,26 @@ interface AboutMeDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type AboutMeDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<AboutMeDocumentData>,
     "about_me",
     Lang
   >;
+
+/**
+ * Item in *Contacts → Social Network Links*
+ */
+export interface ContactsDocumentDataSocialNetworkLinksItem {
+  /**
+   * Link field in *Contacts → Social Network Links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contacts.social_network_links[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+}
 
 type ContactsDocumentDataSlicesSlice = never;
 
@@ -75,6 +112,63 @@ type ContactsDocumentDataSlicesSlice = never;
  * Content for Contacts documents
  */
 interface ContactsDocumentData {
+  /**
+   * Title field in *Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contacts.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Email address label field in *Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contacts.email_address_label
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_address_label: prismic.KeyTextField;
+
+  /**
+   * Email address field in *Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contacts.email_address
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_address: prismic.KeyTextField;
+
+  /**
+   * Social Network Addresses Label field in *Contacts*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contacts.social_networks_addresses_label
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  social_networks_addresses_label: prismic.KeyTextField;
+
+  /**
+   * Social Network Links field in *Contacts*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contacts.social_network_links[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  social_network_links: prismic.GroupField<
+    Simplify<ContactsDocumentDataSocialNetworkLinksItem>
+  >;
+
   /**
    * Slice Zone field in *Contacts*
    *
@@ -128,7 +222,7 @@ interface ContactsDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type ContactsDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
+  prismic.PrismicDocumentWithUID<
     Simplify<ContactsDocumentData>,
     "contacts",
     Lang
@@ -723,6 +817,7 @@ declare module "@prismicio/client" {
       AboutMeDocumentDataSlicesSlice,
       ContactsDocument,
       ContactsDocumentData,
+      ContactsDocumentDataSocialNetworkLinksItem,
       ContactsDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,

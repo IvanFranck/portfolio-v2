@@ -1,0 +1,57 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "felt",
+				"type": "Text"
+			},
+			"summary": {
+				"__TYPE__": "FieldContent",
+				"value": "sang",
+				"type": "Text"
+			},
+			"categories": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"published_date": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2020-06-08"
+			},
+			"others_details": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"type",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "struggle",
+									"type": "Text"
+								}
+							],
+							[
+								"value",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "national",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

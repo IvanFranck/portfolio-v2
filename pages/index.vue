@@ -41,24 +41,24 @@ const route = useRoute();
 const prismic = usePrismic();
 
 const { data: home} = useAsyncData('home', async () => {
-    return prismic.client.getSingle('home');
+  return prismic.client.getSingle('home');
 })
 
 function animateBlocks() {
-    gsap.fromTo("#home .home-block",
-        {y: -96, opacity: 0},
-        {y: 0, opacity: 1, duration: 0.5, ease: "power4.out", stagger: 0.1}
-    )   
+  gsap.fromTo("#home .home-block",
+    {y: -96, opacity: 0},
+    {y: 0, opacity: 1, duration: 0.5, ease: "power4.out", stagger: 0.1}
+  )   
 }
 
 watch((showMenu), () => {
-    if (!showMenu.value && route.name === 'index') {
-        animateBlocks();  
-    }
+  if (!showMenu.value && route.name === 'index') {
+    animateBlocks();  
+  }
 })
 
 onMounted(() => {
-    animateBlocks();  
+  animateBlocks();  
 })
 
 </script>

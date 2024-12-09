@@ -1,15 +1,27 @@
 <template>
-    <div class="underline-link">
-        <div 
-            :class="wrapperClass" 
-            class="link-item__inner"
+  <div class="underline-link">
+    <div 
+      :class="wrapperClass" 
+      class="link-item__inner"
+    >
+      <div
+        class="link"
+        @mouseenter="handleMenuhMouseEnter"
+        @mouseleave="handleMenuhMouseLeave"
+      >
+        <NuxtLink
+          v-if="!asChild"
+          class="link"
+          :to="to"
+          :target="external ? '_blank' : undefined"
         >
-            <div @mouseenter="handleMenuhMouseEnter" @mouseleave="handleMenuhMouseLeave" class="link">
-                <NuxtLink class="link" :to="to" :target="external ? '_blank' : undefined"><slot/></NuxtLink>
-            </div>
-            <div class="link-underline"></div>
-        </div>    
-    </div>
+          <slot />
+        </NuxtLink>
+        <slot v-else />
+      </div>
+      <div class="link-underline" />
+    </div>    
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -17,9 +29,10 @@
 import {gsap} from "gsap";
 
 defineProps({
-  to: { type: String, required: true },
+  to: { type: String, required: false, default: '#' },
   external: { type: Boolean, default: false },
-  wrapperClass: { type: String, required: false },
+  wrapperClass: { type: String, required: false, default: '' },
+  asChild: { type: Boolean, default: false }
 })
 
 function handleMenuhMouseEnter(event: MouseEvent) {

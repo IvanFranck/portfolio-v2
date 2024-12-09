@@ -1,5 +1,9 @@
 {
-  "id": "blogpost",
+  "format": "page",
+  "id": "project",
+  "label": "Project",
+  "repeatable": true,
+  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -12,11 +16,7 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "alternate_grid": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },
@@ -47,9 +47,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "BlogPost",
-  "repeatable": true,
-  "status": true,
-  "format": "page"
+  }
 }

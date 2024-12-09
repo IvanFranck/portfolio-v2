@@ -36,6 +36,15 @@ export default defineNuxtConfig({
           uid: 'home',
           path: '/',
         },
+        {
+          type: 'contacts',
+          uid: 'about-page',
+          path: '/contact',
+        },
+        {
+          type: 'about_me',
+          path: '/about',
+        },
       ]
     }
   }
