@@ -12,6 +12,17 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "cover": {
+          "type": "Image",
+          "config": {
+            "label": "Cover",
+            "constraint": {
+              "width": 1280,
+              "height": 720
+            },
+            "thumbnails": []
+          }
+        },
         "title": {
           "type": "Text",
           "config": {

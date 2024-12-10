@@ -417,22 +417,30 @@ export type ProjectDocument<Lang extends string = string> =
  */
 interface ProjectCategoryDocumentData {
   /**
-   * Category tag field in *Project Category*
+   * Category field in *Project Category*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_category.category_tag
+   * - **API ID Path**: project_category.category
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  category_tag: prismic.SelectField<"AWS DynamoDB" | "AWS Lambda">;
+  category: prismic.SelectField<
+    | "Serverless"
+    | "Front End"
+    | "Back End"
+    | "Web Dev"
+    | "CI/CD"
+    | "DB Modeling"
+    | "Software Architecture"
+  >;
 }
 
 /**
  * Project Category document from Prismic
  *
  * - **API ID**: `project_category`
- * - **Repeatable**: `true`
+ * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
@@ -445,11 +453,11 @@ export type ProjectCategoryDocument<Lang extends string = string> =
   >;
 
 /**
- * Content for project item documents
+ * Content for Project Miniature documents
  */
 interface ProjectItemDocumentData {
   /**
-   * title field in *project item*
+   * Title field in *Project Miniature*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -458,10 +466,32 @@ interface ProjectItemDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
+
+  /**
+   * Category field in *Project Miniature*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_item.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  category: prismic.ContentRelationshipField<"project_category">;
+
+  /**
+   * Project Link field in *Project Miniature*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_item.project_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project_link: prismic.ContentRelationshipField<"project">;
 }
 
 /**
- * project item document from Prismic
+ * Project Miniature document from Prismic
  *
  * - **API ID**: `project_item`
  * - **Repeatable**: `true`
@@ -476,12 +506,51 @@ export type ProjectItemDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Item in *Projects → projects list*
+ */
+export interface ProjectsDocumentDataProjectsListItem {
+  /**
+   * project list item field in *Projects → projects list*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.projects_list[].project_list_item
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project_list_item: prismic.ContentRelationshipField<"project_item">;
+}
+
 type ProjectsDocumentDataSlicesSlice = never;
 
 /**
  * Content for Projects documents
  */
 interface ProjectsDocumentData {
+  /**
+   * Title field in *Projects*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * projects list field in *Projects*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects.projects_list[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  projects_list: prismic.GroupField<
+    Simplify<ProjectsDocumentDataProjectsListItem>
+  >;
+
   /**
    * Slice Zone field in *Projects*
    *
@@ -709,6 +778,16 @@ export interface ProjectDetailsSliceDefaultPrimaryOthersDetailsItem {
  */
 export interface ProjectDetailsSliceDefaultPrimary {
   /**
+   * Cover field in *ProjectDetails → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.cover
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover: prismic.ImageField<never>;
+
+  /**
    * Title field in *ProjectDetails → Default → Primary*
    *
    * - **Field Type**: Text
@@ -832,6 +911,7 @@ declare module "@prismicio/client" {
       ProjectItemDocumentData,
       ProjectsDocument,
       ProjectsDocumentData,
+      ProjectsDocumentDataProjectsListItem,
       ProjectsDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,

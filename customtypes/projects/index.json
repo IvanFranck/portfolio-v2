@@ -1,14 +1,41 @@
 {
   "format": "page",
   "id": "projects",
+  "label": "Projects",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "projects_list": {
+        "type": "Group",
+        "config": {
+          "label": "projects list",
+          "repeat": true,
+          "fields": {
+            "project_list_item": {
+              "type": "Link",
+              "config": {
+                "label": "project list item",
+                "select": "document",
+                "customtypes": ["project_item"]
+              }
+            }
+          }
+        }
+      },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {}
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -38,8 +65,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Projects",
-  "repeatable": false,
-  "status": true
+  }
 }
