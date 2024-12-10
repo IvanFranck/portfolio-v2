@@ -13,13 +13,6 @@
 				"value": "sang",
 				"type": "Text"
 			},
-			"categories": {
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "DocumentLink",
-					"id": "mock_document_id"
-				}
-			},
 			"published_date": {
 				"__TYPE__": "FieldContent",
 				"type": "Date",
@@ -73,6 +66,13 @@
 				"alt": null,
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"categories": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []
