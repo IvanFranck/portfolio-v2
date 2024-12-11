@@ -19,8 +19,11 @@
             <hr class="stroke w-full mt-7">
           </div>
           <ul class="flex flex-col list-none">
-            <li>
-              <NuxtLink to="/projects/1">
+            <li 
+              v-for="project in projects" 
+              :key="project.id"
+            >
+              <PrismicLink :field="project.data.project_link">
                 <div
                   class="project-row"
                   @mouseenter="handleProjectRowMouseEnter"
@@ -33,7 +36,7 @@
                       </div>
                     </div>
                     <h2 class="project-row__title heading-h3">
-                      My portfolio
+                      {{ project.data.title }}
                     </h2>
                   </div>
                   <div class="project-row__right">
@@ -42,7 +45,7 @@
                     </p>
                   </div>
                 </div>
-              </NuxtLink>
+              </PrismicLink>
             </li>
           </ul>
         </div>
@@ -54,6 +57,13 @@
 <script setup lang="ts">
 
 import { gsap } from 'gsap';
+
+const prismic = usePrismic();
+
+const { data: projects} = useAsyncData('projects_page', async () => {
+  return prismic.client.getAllByType('project_item');
+})
+
 
 function handleProjectRowMouseEnter(event: MouseEvent) {
     const target = event.currentTarget as HTMLElement;

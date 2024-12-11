@@ -25,15 +25,35 @@ defineProps(
         </h1>
         <hr class="stroke w-full mt-7">
       </div>
+
+      <div class="w-full flex flex-col md:flex-row mt-4 md:mt-8">
+        <div class="w-full md:w-1/2 md:pr-2">
+          <div class="w-full grid grid-cols-2 gap-x-2 gap-y-3 ">
+            <h2 class="font-display heading-h3 uppercase ">
+              Catégory
+            </h2>
+           
+            <h2 class="font-display heading-h3 uppercase">
+              Date
+            </h2>
+            <p>
+              {{ slice.primary.published_date }}
+            </p>
+            <template
+              v-for="item in slice.primary.others_details"
+              :key="item.type"
+            >
+              <h2 class="font-display heading-h3 uppercase">
+                {{ item.type }}
+              </h2>
+              <p>
+                {{ item.value }}
+              </p>
+            </template>
+          </div>
+        </div>
+      </div>
       {{ slice.primary.summary }}
-      <PrismicLink :field="slice.primary.categories">
-        {{ slice.primary.categories }}
-      </PrismicLink>
-      {{ slice.primary.published_date }}
-      <template v-for="item in slice.primary.others_details">
-        {{ item.type }}
-        {{ item.value }}
-      </template>
     </div>
   </section>
 </template>

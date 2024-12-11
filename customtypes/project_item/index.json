@@ -19,20 +19,23 @@
           "placeholder": ""
         }
       },
-      "category": {
-        "type": "Link",
-        "config": {
-          "label": "Category",
-          "select": "document",
-          "customtypes": ["project_category"]
-        }
-      },
       "project_link": {
         "type": "Link",
         "config": {
           "label": "Project Link",
           "select": "document",
           "customtypes": ["project"]
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "project_categories": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     }

@@ -37,16 +37,6 @@
             "placeholder": ""
           }
         },
-        "categories": {
-          "type": "Link",
-          "config": {
-            "label": "Categories",
-            "select": "document",
-            "customtypes": [
-              "project_category"
-            ]
-          }
-        },
         "published_date": {
           "type": "Date",
           "config": {
