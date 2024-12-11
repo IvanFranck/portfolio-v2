@@ -739,7 +739,6 @@ export interface ProjectCategoriesSliceDefaultPrimaryCategoriesItem {
     | "DynamoDB"
     | "Lambda"
     | "AWS Amplify"
-    | "CI/CD"
     | "AWS EC2"
     | "CI/CD"
     | "AWS S3"
@@ -766,7 +765,6 @@ export interface ProjectCategoriesSliceColumnPrimaryCategoriesItem {
     | "AWS Amplify"
     | "CI/CD"
     | "AWS EC2"
-    | "CI/CD"
     | "AWS S3"
     | "DB Modeling"
   >;

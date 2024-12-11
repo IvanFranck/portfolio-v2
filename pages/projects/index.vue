@@ -19,6 +19,7 @@
             <hr class="stroke w-full mt-7">
           </div>
           <ul class="flex flex-col list-none">
+            <pre>{{ projects }}</pre>
             <li 
               v-for="project in projects" 
               :key="project.id"
@@ -41,7 +42,7 @@
                   </div>
                   <div class="project-row__right">
                     <p class="project-row__category">
-                      Web Development
+                      <SliceZone :slices="project.data.slices" />
                     </p>
                   </div>
                 </div>

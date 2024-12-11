@@ -13,7 +13,7 @@
 								"category",
 								{
 									"__TYPE__": "FieldContent",
-									"value": "CI/CD",
+									"value": "AWS Amplify",
 									"type": "Select"
 								}
 							]
@@ -38,7 +38,7 @@
 								"category",
 								{
 									"__TYPE__": "FieldContent",
-									"value": "AWS S3",
+									"value": "CI/CD",
 									"type": "Select"
 								}
 							]
