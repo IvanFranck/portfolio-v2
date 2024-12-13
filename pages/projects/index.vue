@@ -12,42 +12,45 @@
           <div class="w-full">
             <div class="w-full flex justify-between items-baseline">
               <h1 class="heading-h1 w-full">
-                Projets
+                {{ projects?.data.title }}
               </h1>
-              <span class="">9</span>
+              <span class="">{{ projectsList?.length }}</span>
             </div>
             <hr class="stroke w-full mt-7">
           </div>
+          <pre>{{ projectsList }}</pre>
           <ul class="flex flex-col list-none">
-            <pre>{{ projects }}</pre>
-            <li 
-              v-for="project in projects" 
-              :key="project.id"
-            >
-              <PrismicLink :field="project.data.project_link">
-                <div
-                  class="project-row"
-                  @mouseenter="handleProjectRowMouseEnter"
-                  @mouseleave="handleProjectRowMouseLeave"
-                >
-                  <div class="project-row__left">
-                    <div class="project-row__left__arrow-wrapper">
-                      <div class="project-row__left__arrow heading-h3">
-                        →
+            <ClientOnly>
+              <li 
+                v-for="project in projectsList" 
+                :key="project.id"
+              >
+                <PrismicLink :field="project.data.project_link">
+                  <div
+                    class="project-row"
+                    @mouseenter="handleProjectRowMouseEnter"
+                    @mouseleave="handleProjectRowMouseLeave"
+                  >
+                    <div class="project-row__left">
+                      <div class="project-row__left__arrow-wrapper">
+                        <div class="project-row__left__arrow heading-h3">
+                          →
+                        </div>
                       </div>
+                      <h2 class="project-row__title heading-h3">
+                        {{ project.data.title }}
+                      </h2>
                     </div>
-                    <h2 class="project-row__title heading-h3">
-                      {{ project.data.title }}
-                    </h2>
+                    <div class="project-row__right">
+                      <SliceZone
+                        :slices="project.data.slices"
+                        :components="components"
+                      />
+                    </div>
                   </div>
-                  <div class="project-row__right">
-                    <p class="project-row__category">
-                      <SliceZone :slices="project.data.slices" />
-                    </p>
-                  </div>
-                </div>
-              </PrismicLink>
-            </li>
+                </PrismicLink>
+              </li>
+            </ClientOnly>
           </ul>
         </div>
       </div>
@@ -58,13 +61,17 @@
 <script setup lang="ts">
 
 import { gsap } from 'gsap';
+import { components } from '~/slices';
 
 const prismic = usePrismic();
 
-const { data: projects} = useAsyncData('projects_page', async () => {
+const { data: projectsList} = useAsyncData('projects_page__projects_list', async () => {
   return prismic.client.getAllByType('project_item');
 })
 
+const { data: projects} = useAsyncData('projects_page', async () => {
+  return prismic.client.getSingle('projects');
+})
 
 function handleProjectRowMouseEnter(event: MouseEvent) {
     const target = event.currentTarget as HTMLElement;
@@ -109,7 +116,7 @@ function handleProjectRowMouseLeave(event: MouseEvent) {
     }
 
     &__right {
-        @apply w-full text-right ;
+        @apply w-full flex justify-end items-center;
     }
     
     &__category {

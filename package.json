@@ -20,17 +20,17 @@
     "gsap": "^3.12.5"
   },
   "devDependencies": {
-    "@nuxtjs/color-mode": "^3.5.2",
-    "@nuxtjs/google-fonts": "^3.2.0",
-    "@nuxtjs/tailwindcss": "^6.12.2",
-    "sass-embedded": "^1.81.0",
     "@nuxt/devtools": "^1.4.2",
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxtjs/prismic": "^3.0.0",
-    "@slicemachine/adapter-nuxt": "^0.3.49",
+    "@nuxtjs/color-mode": "^3.5.2",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/prismic": "^3.4.6",
+    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@slicemachine/adapter-nuxt": "^0.3.60",
     "concurrently": "^9.0.1",
     "eslint": "^8.57.1",
     "nuxt": "^3.13.2",
-    "slice-machine-ui": "^2.7.1"
+    "sass-embedded": "^1.81.0",
+    "slice-machine-ui": "^2.11.0"
   }
 }

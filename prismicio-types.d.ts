@@ -481,21 +481,6 @@ export type ProjectItemDocument<Lang extends string = string> =
     Lang
   >;
 
-/**
- * Item in *Projects → projects list*
- */
-export interface ProjectsDocumentDataProjectsListItem {
-  /**
-   * project list item field in *Projects → projects list*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: projects.projects_list[].project_list_item
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  project_list_item: prismic.ContentRelationshipField<"project_item">;
-}
-
 type ProjectsDocumentDataSlicesSlice = never;
 
 /**
@@ -512,19 +497,6 @@ interface ProjectsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
-
-  /**
-   * projects list field in *Projects*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: projects.projects_list[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  projects_list: prismic.GroupField<
-    Simplify<ProjectsDocumentDataProjectsListItem>
-  >;
 
   /**
    * Slice Zone field in *Projects*
@@ -1001,7 +973,6 @@ declare module "@prismicio/client" {
       ProjectItemDocumentDataSlicesSlice,
       ProjectsDocument,
       ProjectsDocumentData,
-      ProjectsDocumentDataProjectsListItem,
       ProjectsDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,

@@ -52,7 +52,7 @@
     }
 
     .stroke {
-        @apply h-[1px] lg:h-[2px] bg-stroke-primary dark:bg-stroke-primary-foreground;
+        @apply h-[2px] lg:h-[3px] bg-stroke-primary dark:bg-stroke-primary-foreground;
     }
 
     .underline-link .link-underline{
