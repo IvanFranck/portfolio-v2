@@ -1,45 +1,78 @@
 <template>
-    <div id="projects" class="min-h-screen w-full">
-        <div class="content-wrapper">
-            <div class="w-full flex justify-between items-start">
-
-                <!-- project left -->
-                <div class=""></div>
-
-                <div class="md:w-1/2 w-full pl-4">
-                    <div class="w-full">
-                        <div class="w-full flex justify-between items-baseline">
-                            <h1 class="heading-h1 w-full">Projets</h1>
-                            <span class="">9</span>
-                        </div>
-                        <hr class="stroke w-full mt-7">
-                    </div>
-                    <ul class="flex flex-col list-none">
-                        <li>
-                            <NuxtLink to="/projects/1">
-                                <div class="project-row" @mouseenter="handleProjectRowMouseEnter" @mouseleave="handleProjectRowMouseLeave">
-                                    <div class="project-row__left">
-                                        <div class="project-row__left__arrow-wrapper">
-                                            <div class="project-row__left__arrow heading-h3">→</div>
-                                        </div>
-                                        <h2 class="project-row__title heading-h3">My portfolio</h2>
-                                    </div>
-                                    <div class="project-row__right">
-                                        <p class="project-row__category">Web Development</p>
-                                    </div>
-                                </div>
-                            </NuxtLink>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  <div
+    id="projects"
+    class="min-h-screen w-full"
+  >
+    <div class="content-wrapper">
+      <div class="w-full flex justify-between items-start">
+        <!-- project left -->
+        <div class="">
+          <!-- <pre>{{ projectsList }}</pre> -->
         </div>
+
+        <div class="md:w-1/2 w-full pl-4">
+          <div class="w-full">
+            <div class="w-full flex justify-between items-baseline">
+              <h1 class="heading-h1 w-full">
+                <!-- {{ projectsList?.data.title }} -->
+              </h1>
+              <span class="">{{ projectsList?.length }}</span>
+            </div>
+            <hr class="stroke w-full mt-7">
+          </div>
+          <ul class="flex flex-col list-none">
+            <ClientOnly>
+              <li 
+                v-for="project in projectsList" 
+                :key="project.data.title"
+              >
+                <div
+                  class="project-row"
+                  @mouseenter="handleProjectRowMouseEnter"
+                  @mouseleave="handleProjectRowMouseLeave"
+                >
+                  <div class="project-row__left">
+                    <div class="project-row__left__arrow-wrapper">
+                      <div class="project-row__left__arrow heading-h3">
+                        →
+                      </div>
+                    </div>
+                    <NuxtLink :to="`projects/${project.uid}`">
+                      <h2 class="project-row__title heading-h3">
+                        {{ project.data.title }}
+                      </h2>
+                    </NuxtLink>
+                  </div>
+                  <div class="project-row__right">
+                    <p class="project-row__category">
+                      {{ project.data.categories.map((item: any) => item.category).join((', ')) }}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            </ClientOnly>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 
 import { gsap } from 'gsap';
+
+const prismic = usePrismic();
+
+const { data: projectsList } = useAsyncData('projects_page', async () => {
+  return prismic.client.getAllByType('project', {
+    fetch: ['project.title', 'project.categories'],
+    // orderings: {
+    //   field: 'project.title',
+    //   direction: 'asc'
+    // }
+  });
+})
 
 function handleProjectRowMouseEnter(event: MouseEvent) {
     const target = event.currentTarget as HTMLElement;
@@ -84,7 +117,7 @@ function handleProjectRowMouseLeave(event: MouseEvent) {
     }
 
     &__right {
-        @apply w-full text-right ;
+        @apply w-full flex justify-end items-center;
     }
     
     &__category {

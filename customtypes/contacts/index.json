@@ -1,0 +1,99 @@
+{
+  "format": "page",
+  "id": "contacts",
+  "label": "Contacts",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID",
+          "placeholder": ""
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "email_address_label": {
+        "type": "Text",
+        "config": {
+          "label": "Email address label",
+          "placeholder": ""
+        }
+      },
+      "email_address": {
+        "type": "Text",
+        "config": {
+          "label": "Email address",
+          "placeholder": ""
+        }
+      },
+      "social_networks_addresses_label": {
+        "type": "Text",
+        "config": {
+          "label": "Social Network Addresses Label",
+          "placeholder": ""
+        }
+      },
+      "social_network_links": {
+        "type": "Group",
+        "config": {
+          "label": "Social Network Links",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "select": null,
+                "allowText": true
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  }
+}

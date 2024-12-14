@@ -30,7 +30,7 @@
 
 @layer components {
     .heading-h1 {
-        @apply text-4xl md:text-5xl lg:text-7xl font-extrabold text-stroke-primary dark:text-stroke-primary-foreground;
+        @apply text-4xl md:text-5xl lg:text-7xl font-extrabold text-stroke-primary dark:text-stroke-primary-foreground font-display;
     }
     .heading-h2 {
         @apply text-2xl lg:text-5xl md:text-4xl font-extrabold;
@@ -52,7 +52,7 @@
     }
 
     .stroke {
-        @apply h-[1px] lg:h-[2px] bg-stroke-primary dark:bg-stroke-primary-foreground;
+        @apply h-[2px] lg:h-[3px] bg-stroke-primary dark:bg-stroke-primary-foreground;
     }
 
     .underline-link .link-underline{
@@ -62,7 +62,7 @@
         @apply lowercase font-thin text-base md:text-xl lg:text-3xl cursor-pointer;
     }
     .underline-link {
-        @apply overflow-hidden relative pr-5;
+        @apply overflow-hidden relative pr-5 font-sans;
     }
     
 }

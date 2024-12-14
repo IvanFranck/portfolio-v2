@@ -19,6 +19,9 @@ export default {
       },
       fontFamily: {
         'cursive': ['La Belle Aurore', 'cursive'],
+        'sans': ['PT Sans Caption', 'sans-serif'],
+        'display': ['Anton', 'sans-serif'],
+        'serif': ['Karma', 'serif'],
       }
     },
   },

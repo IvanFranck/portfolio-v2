@@ -1,0 +1,100 @@
+{
+  "id": "project_details",
+  "type": "SharedSlice",
+  "name": "ProjectDetails",
+  "description": "ProjectDetails",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "cover": {
+          "type": "Image",
+          "config": {
+            "label": "Cover",
+            "constraint": {
+              "width": 1280,
+              "height": 720
+            },
+            "thumbnails": []
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "summary": {
+          "type": "Text",
+          "config": {
+            "label": "Summary",
+            "placeholder": ""
+          }
+        },
+        "published_date": {
+          "type": "Date",
+          "config": {
+            "label": "Published Date",
+            "placeholder": ""
+          }
+        },
+        "categories": {
+          "type": "Group",
+          "config": {
+            "label": "Categories",
+            "repeat": true,
+            "fields": {
+              "category": {
+                "type": "Select",
+                "config": {
+                  "label": "Category",
+                  "placeholder": "",
+                  "options": [
+                    "AWS DynamoDB",
+                    "AWS Lambda",
+                    "API Gateway",
+                    "AWS Amplify",
+                    "CI/CD",
+                    "AWS EC2",
+                    "AWS S3",
+                    "DB Modeling"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "others_details": {
+          "type": "Group",
+          "config": {
+            "label": "Others Details",
+            "repeat": true,
+            "fields": {
+              "type": {
+                "type": "Text",
+                "config": {
+                  "label": "Type",
+                  "placeholder": ""
+                }
+              },
+              "value": {
+                "type": "Text",
+                "config": {
+                  "label": "Value",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

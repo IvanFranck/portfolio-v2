@@ -1,15 +1,17 @@
 <template>
-    <TheNavBar/>
-    <TheMenu v-show="showMenu"/>
+  <div>
+    <TheNavBar />
+    <TheMenu v-show="showMenu" />
     <main 
-        class="bg-background dark:bg-background-foreground min-h-screen w-min-screen transition-all duration-200 ease-in-out"
-        :class="{ 'opacity-0': showMenu, 'opacity-100': !showMenu }"
+      class="bg-background dark:bg-background-foreground min-h-screen w-min-screen transition-all duration-200 ease-in-out"
+      :class="{ 'opacity-0': showMenu, 'opacity-100': !showMenu }"
     >
-        <div class="w-full px-6 pd:px-12 lg:px-24">
-            <slot/>
-        </div>
+      <div class="w-full px-6 pd:px-12 lg:px-24">
+        <slot />
+      </div>
     </main>
-    <div class="noise"></div>
+    <div class="noise" /> 
+  </div>
 </template>
 
 <script setup>
