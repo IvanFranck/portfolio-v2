@@ -14,7 +14,7 @@
           <div class="w-full">
             <div class="w-full flex justify-between items-baseline">
               <h1 class="heading-h1 w-full">
-                <!-- {{ projectsList?.data.title }} -->
+                Projects
               </h1>
               <span class="">{{ projectsList?.length }}</span>
             </div>
@@ -26,29 +26,32 @@
                 v-for="project in projectsList" 
                 :key="project.data.title"
               >
-                <div
-                  class="project-row"
-                  @mouseenter="handleProjectRowMouseEnter"
-                  @mouseleave="handleProjectRowMouseLeave"
+                <NuxtLink
+                  :to="`projects/${project.uid}`"
+                  class="cursor-pointer"
                 >
-                  <div class="project-row__left">
-                    <div class="project-row__left__arrow-wrapper">
-                      <div class="project-row__left__arrow heading-h3">
-                        →
+                  <div
+                    class="project-row"
+                    @mouseenter="handleProjectRowMouseEnter"
+                    @mouseleave="handleProjectRowMouseLeave"
+                  >
+                    <div class="project-row__left">
+                      <div class="project-row__left__arrow-wrapper">
+                        <div class="project-row__left__arrow heading-h3">
+                          →
+                        </div>
                       </div>
-                    </div>
-                    <NuxtLink :to="`projects/${project.uid}`">
                       <h2 class="project-row__title heading-h3">
                         {{ project.data.title }}
                       </h2>
-                    </NuxtLink>
+                    </div>
+                    <div class="project-row__right">
+                      <p class="project-row__category">
+                        {{ project.data.categories.map((item: any) => item.category).join((', ')) }}
+                      </p>
+                    </div>
                   </div>
-                  <div class="project-row__right">
-                    <p class="project-row__category">
-                      {{ project.data.categories.map((item: any) => item.category).join((', ')) }}
-                    </p>
-                  </div>
-                </div>
+                </NuxtLink>
               </li>
             </ClientOnly>
           </ul>
