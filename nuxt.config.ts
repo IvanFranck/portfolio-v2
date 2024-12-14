@@ -15,8 +15,28 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@nuxtjs/google-fonts',
     '@nuxtjs/color-mode',
-    "@nuxtjs/prismic"
+    "@nuxtjs/prismic",
+    '@nuxtjs/sitemap'
   ],
+
+  sitemap: {
+    urls: [
+      '/',
+      '/projects',
+      '/about',
+    ],
+    exclude: [
+      '/slice-simulator',
+      '/admin/**',
+      '/api/**',
+      '/preview'
+    ],
+    defaults: {
+      changefreq: 'daily',
+      priority: 0.8,
+      lastmod: new Date().toISOString()
+    }
+  },
 
   googleFonts: {
     families: {
