@@ -44,6 +44,32 @@
             "placeholder": ""
           }
         },
+        "categories": {
+          "type": "Group",
+          "config": {
+            "label": "Categories",
+            "repeat": true,
+            "fields": {
+              "category": {
+                "type": "Select",
+                "config": {
+                  "label": "Category",
+                  "placeholder": "",
+                  "options": [
+                    "AWS DynamoDB",
+                    "AWS Lambda",
+                    "API Gateway",
+                    "AWS Amplify",
+                    "CI/CD",
+                    "AWS EC2",
+                    "AWS S3",
+                    "DB Modeling"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "others_details": {
           "type": "Group",
           "config": {

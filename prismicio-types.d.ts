@@ -347,24 +347,57 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type ProjectDocumentDataSlicesSlice =
-  | ProjectCategoriesSlice
-  | ProjectDetailsSlice;
+/**
+ * Item in *Project → Categories*
+ */
+export interface ProjectDocumentDataCategoriesItem {
+  /**
+   * Category field in *Project → Categories*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.categories[].category
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  category: prismic.SelectField<
+    | "AWS DynamoDB"
+    | "AWS Lambda"
+    | "API Gateway"
+    | "AWS Amplify"
+    | "AWS S3"
+    | "AWS EC2"
+    | "CI/CD"
+    | "DB Modeling"
+  >;
+}
+
+type ProjectDocumentDataSlicesSlice = ProjectDetailsSlice;
 
 /**
  * Content for Project documents
  */
 interface ProjectDocumentData {
   /**
-   * Content field in *Project*
+   * Title field in *Project*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.content
+   * - **API ID Path**: project.title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  content: prismic.RichTextField;
+  title: prismic.KeyTextField;
+
+  /**
+   * Categories field in *Project*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.categories[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  categories: prismic.GroupField<Simplify<ProjectDocumentDataCategoriesItem>>;
 
   /**
    * Slice Zone field in *Project*
@@ -422,138 +455,6 @@ export type ProjectDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
     Simplify<ProjectDocumentData>,
     "project",
-    Lang
-  >;
-
-type ProjectItemDocumentDataSlicesSlice = ProjectCategoriesSlice;
-
-/**
- * Content for Project Miniature documents
- */
-interface ProjectItemDocumentData {
-  /**
-   * Title field in *Project Miniature*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_item.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Project Link field in *Project Miniature*
-   *
-   * - **Field Type**: Content Relationship
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_item.project_link
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  project_link: prismic.ContentRelationshipField<"project">;
-
-  /**
-   * Slice Zone field in *Project Miniature*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_item.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<ProjectItemDocumentDataSlicesSlice>;
-}
-
-/**
- * Project Miniature document from Prismic
- *
- * - **API ID**: `project_item`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ProjectItemDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<ProjectItemDocumentData>,
-    "project_item",
-    Lang
-  >;
-
-type ProjectsDocumentDataSlicesSlice = never;
-
-/**
- * Content for Projects documents
- */
-interface ProjectsDocumentData {
-  /**
-   * Title field in *Projects*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: projects.title
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Slice Zone field in *Projects*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: projects.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<ProjectsDocumentDataSlicesSlice> /**
-   * Meta Title field in *Projects*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: projects.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_title: prismic.KeyTextField;
-
-  /**
-   * Meta Description field in *Projects*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: projects.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Projects*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: projects.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Projects document from Prismic
- *
- * - **API ID**: `projects`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ProjectsDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<ProjectsDocumentData>,
-    "projects",
     Lang
   >;
 
@@ -690,50 +591,24 @@ export type AllDocumentTypes =
   | ContactsDocument
   | HomeDocument
   | ProjectDocument
-  | ProjectItemDocument
-  | ProjectsDocument
   | SettingsDocument;
 
 /**
- * Item in *ProjectCategories → Row → Primary → Categories*
+ * Item in *ProjectDetails → Default → Primary → Categories*
  */
-export interface ProjectCategoriesSliceDefaultPrimaryCategoriesItem {
+export interface ProjectDetailsSliceDefaultPrimaryCategoriesItem {
   /**
-   * Category field in *ProjectCategories → Row → Primary → Categories*
+   * Category field in *ProjectDetails → Default → Primary → Categories*
    *
    * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: project_categories.default.primary.categories[].category
+   * - **API ID Path**: project_details.default.primary.categories[].category
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   category: prismic.SelectField<
-    | "AWS API Gateway"
-    | "DynamoDB"
-    | "Lambda"
-    | "AWS Amplify"
-    | "AWS EC2"
-    | "CI/CD"
-    | "AWS S3"
-    | "DB Modeling"
-  >;
-}
-
-/**
- * Item in *ProjectCategories → Column → Primary → Categories*
- */
-export interface ProjectCategoriesSliceColumnPrimaryCategoriesItem {
-  /**
-   * Category field in *ProjectCategories → Column → Primary → Categories*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_categories.column.primary.categories[].category
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  category: prismic.SelectField<
-    | "AWS API Gateway"
-    | "DynamoDB"
-    | "Lambda"
+    | "AWS DynamoDB"
+    | "AWS Lambda"
+    | "API Gateway"
     | "AWS Amplify"
     | "CI/CD"
     | "AWS EC2"
@@ -741,85 +616,6 @@ export interface ProjectCategoriesSliceColumnPrimaryCategoriesItem {
     | "DB Modeling"
   >;
 }
-
-/**
- * Primary content in *ProjectCategories → Row → Primary*
- */
-export interface ProjectCategoriesSliceDefaultPrimary {
-  /**
-   * Categories field in *ProjectCategories → Row → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_categories.default.primary.categories[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  categories: prismic.GroupField<
-    Simplify<ProjectCategoriesSliceDefaultPrimaryCategoriesItem>
-  >;
-}
-
-/**
- * Row variation for ProjectCategories Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ProjectCategoriesSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<ProjectCategoriesSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Primary content in *ProjectCategories → Column → Primary*
- */
-export interface ProjectCategoriesSliceColumnPrimary {
-  /**
-   * Categories field in *ProjectCategories → Column → Primary*
-   *
-   * - **Field Type**: Group
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_categories.column.primary.categories[]
-   * - **Documentation**: https://prismic.io/docs/field#group
-   */
-  categories: prismic.GroupField<
-    Simplify<ProjectCategoriesSliceColumnPrimaryCategoriesItem>
-  >;
-}
-
-/**
- * Column variation for ProjectCategories Slice
- *
- * - **API ID**: `column`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ProjectCategoriesSliceColumn = prismic.SharedSliceVariation<
-  "column",
-  Simplify<ProjectCategoriesSliceColumnPrimary>,
-  never
->;
-
-/**
- * Slice variation for *ProjectCategories*
- */
-type ProjectCategoriesSliceVariation =
-  | ProjectCategoriesSliceDefault
-  | ProjectCategoriesSliceColumn;
-
-/**
- * ProjectCategories Shared Slice
- *
- * - **API ID**: `project_categories`
- * - **Description**: ProjectCategories
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ProjectCategoriesSlice = prismic.SharedSlice<
-  "project_categories",
-  ProjectCategoriesSliceVariation
->;
 
 /**
  * Item in *ProjectDetails → Default → Primary → Others Details*
@@ -889,6 +685,18 @@ export interface ProjectDetailsSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#date
    */
   published_date: prismic.DateField;
+
+  /**
+   * Categories field in *ProjectDetails → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project_details.default.primary.categories[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  categories: prismic.GroupField<
+    Simplify<ProjectDetailsSliceDefaultPrimaryCategoriesItem>
+  >;
 
   /**
    * Others Details field in *ProjectDetails → Default → Primary*
@@ -967,27 +775,15 @@ declare module "@prismicio/client" {
       HomeDocumentDataSlicesSlice,
       ProjectDocument,
       ProjectDocumentData,
+      ProjectDocumentDataCategoriesItem,
       ProjectDocumentDataSlicesSlice,
-      ProjectItemDocument,
-      ProjectItemDocumentData,
-      ProjectItemDocumentDataSlicesSlice,
-      ProjectsDocument,
-      ProjectsDocumentData,
-      ProjectsDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
       SettingsDocumentDataExternalLinksItem,
       AllDocumentTypes,
-      ProjectCategoriesSlice,
-      ProjectCategoriesSliceDefaultPrimaryCategoriesItem,
-      ProjectCategoriesSliceDefaultPrimary,
-      ProjectCategoriesSliceColumnPrimaryCategoriesItem,
-      ProjectCategoriesSliceColumnPrimary,
-      ProjectCategoriesSliceVariation,
-      ProjectCategoriesSliceDefault,
-      ProjectCategoriesSliceColumn,
       ProjectDetailsSlice,
+      ProjectDetailsSliceDefaultPrimaryCategoriesItem,
       ProjectDetailsSliceDefaultPrimaryOthersDetailsItem,
       ProjectDetailsSliceDefaultPrimary,
       ProjectDetailsSliceVariation,

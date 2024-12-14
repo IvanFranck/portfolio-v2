@@ -26,17 +26,24 @@ defineProps(
         <hr class="stroke w-full mt-7">
       </div>
 
-      <div class="w-full flex flex-col md:flex-row mt-4 md:mt-8">
-        <div class="w-full md:w-1/2 md:pr-2">
-          <div class="w-full grid grid-cols-2 gap-x-2 gap-y-3 ">
-            <h2 class="font-display heading-h3 uppercase ">
-              Catégory
+      <div class="details-wrapper">
+        <div class="left-details__container">
+          <div class="left-details ">
+            <h2 class="font-display heading-h3 uppercase">
+              Categories
             </h2>
-           
+            <ul class="list-none flex flex-col col-2">
+              <li
+                v-for="item in slice.primary.categories"
+                :key="item.category"
+              >
+                {{ item.category }}
+              </li>
+            </ul>
             <h2 class="font-display heading-h3 uppercase">
               Date
             </h2>
-            <p>
+            <p class="text-ellipsis overflow-hidden text-nowrap col-2">
               {{ slice.primary.published_date }}
             </p>
             <template
@@ -46,14 +53,38 @@ defineProps(
               <h2 class="font-display heading-h3 uppercase">
                 {{ item.type }}
               </h2>
-              <p>
+              <p class="text-ellipsis overflow-hidden text-nowrap col-2">
                 {{ item.value }}
               </p>
             </template>
           </div>
         </div>
+        <div class="right-details">
+          {{ slice.primary.summary }}
+        </div>
       </div>
-      {{ slice.primary.summary }}
     </div>
   </section>
 </template>
+
+<style lang="scss" scoped> 
+
+.left-details {
+  @apply w-full grid grid-flow-row-dense grid-cols-3 gap-x-2 gap-y-6 items-baseline;
+  &__container {
+    @apply w-full md:w-2/3 md:pr-2;
+  }
+}
+
+.right-details{
+  @apply w-full md:w-1/3 md:pl-2 md:mt-0 mt-4;
+}
+
+.details-wrapper {
+  @apply w-full flex flex-col md:flex-row mt-4 md:mt-8;
+}
+
+.col-2 {
+  @apply col-span-2;
+}
+</style>

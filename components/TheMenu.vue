@@ -36,7 +36,7 @@
           >
             <AppUnderlineLink
               :to="`${social.link?.url}`"
-              target="_blank"
+              external
             >
               ↗  {{ social.label }}
             </AppUnderlineLink>

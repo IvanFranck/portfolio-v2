@@ -12,13 +12,37 @@
           "label": "UID"
         }
       },
-      "content": {
-        "type": "StructuredText",
+      "title": {
+        "type": "Text",
         "config": {
-          "label": "Content",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          "label": "Title",
+          "placeholder": ""
+        }
+      },
+      "categories": {
+        "type": "Group",
+        "config": {
+          "label": "Categories",
+          "repeat": true,
+          "fields": {
+            "category": {
+              "type": "Select",
+              "config": {
+                "label": "Category",
+                "placeholder": "",
+                "options": [
+                  "AWS DynamoDB",
+                  "AWS Lambda",
+                  "API Gateway",
+                  "AWS Amplify",
+                  "AWS S3",
+                  "AWS EC2",
+                  "CI/CD",
+                  "DB Modeling"
+                ]
+              }
+            }
+          }
         }
       },
       "slices": {
@@ -26,9 +50,6 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "project_categories": {
-              "type": "SharedSlice"
-            },
             "project_details": {
               "type": "SharedSlice"
             }

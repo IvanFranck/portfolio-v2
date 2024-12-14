@@ -6,49 +6,49 @@
     <div class="content-wrapper">
       <div class="w-full flex justify-between items-start">
         <!-- project left -->
-        <div class="" />
+        <div class="">
+          <!-- <pre>{{ projectsList }}</pre> -->
+        </div>
 
         <div class="md:w-1/2 w-full pl-4">
           <div class="w-full">
             <div class="w-full flex justify-between items-baseline">
               <h1 class="heading-h1 w-full">
-                {{ projects?.data.title }}
+                <!-- {{ projectsList?.data.title }} -->
               </h1>
               <span class="">{{ projectsList?.length }}</span>
             </div>
             <hr class="stroke w-full mt-7">
           </div>
-          <pre>{{ projectsList }}</pre>
           <ul class="flex flex-col list-none">
             <ClientOnly>
               <li 
                 v-for="project in projectsList" 
-                :key="project.id"
+                :key="project.data.title"
               >
-                <PrismicLink :field="project.data.project_link">
-                  <div
-                    class="project-row"
-                    @mouseenter="handleProjectRowMouseEnter"
-                    @mouseleave="handleProjectRowMouseLeave"
-                  >
-                    <div class="project-row__left">
-                      <div class="project-row__left__arrow-wrapper">
-                        <div class="project-row__left__arrow heading-h3">
-                          →
-                        </div>
+                <div
+                  class="project-row"
+                  @mouseenter="handleProjectRowMouseEnter"
+                  @mouseleave="handleProjectRowMouseLeave"
+                >
+                  <div class="project-row__left">
+                    <div class="project-row__left__arrow-wrapper">
+                      <div class="project-row__left__arrow heading-h3">
+                        →
                       </div>
+                    </div>
+                    <NuxtLink :to="`projects/${project.uid}`">
                       <h2 class="project-row__title heading-h3">
                         {{ project.data.title }}
                       </h2>
-                    </div>
-                    <div class="project-row__right">
-                      <SliceZone
-                        :slices="project.data.slices"
-                        :components="components"
-                      />
-                    </div>
+                    </NuxtLink>
                   </div>
-                </PrismicLink>
+                  <div class="project-row__right">
+                    <p class="project-row__category">
+                      {{ project.data.categories.map((item: any) => item.category).join((', ')) }}
+                    </p>
+                  </div>
+                </div>
               </li>
             </ClientOnly>
           </ul>
@@ -61,16 +61,17 @@
 <script setup lang="ts">
 
 import { gsap } from 'gsap';
-import { components } from '~/slices';
 
 const prismic = usePrismic();
 
-const { data: projectsList} = useAsyncData('projects_page__projects_list', async () => {
-  return prismic.client.getAllByType('project_item');
-})
-
-const { data: projects} = useAsyncData('projects_page', async () => {
-  return prismic.client.getSingle('projects');
+const { data: projectsList } = useAsyncData('projects_page', async () => {
+  return prismic.client.getAllByType('project', {
+    fetch: ['project.title', 'project.categories'],
+    // orderings: {
+    //   field: 'project.title',
+    //   direction: 'asc'
+    // }
+  });
 })
 
 function handleProjectRowMouseEnter(event: MouseEvent) {
