@@ -9,6 +9,7 @@
     "url": "https://nzimaivan.com"
   },
   "scripts": {
+    "build": "nuxt build",
     "dev": "concurrently \"npm:nuxt:dev\" \"npm:slicemachine\" --names \"nuxt,slicemachine\" --prefix-colors green,magenta",
     "nuxt:dev": "nuxt dev",
     "generate": "nuxt generate",
