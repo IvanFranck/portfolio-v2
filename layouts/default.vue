@@ -2,7 +2,8 @@
   <div>
     <TheNavBar />
     <TheMenu v-show="showMenu" />
-    <main 
+    <main
+      role="main" 
       class="bg-background dark:bg-background-foreground min-h-screen w-min-screen transition-all duration-200 ease-in-out"
       :class="{ 'opacity-0': showMenu, 'opacity-100': !showMenu }"
     >

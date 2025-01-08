@@ -13,7 +13,7 @@
         </ClientOnly>
       </p>
     </div>
-
+    
     <div class="mt-12 flex justify-center">
       <ol class="list-none flex sm:flex-row flex-col sm:gap-6 gap:4">
         <li
@@ -40,8 +40,22 @@ const route = useRoute();
 
 const prismic = usePrismic();
 
-const { data: home} = useAsyncData('home', async () => {
+const { data: home } = useAsyncData('home', async () => {
   return prismic.client.getSingle('home');
+})
+
+useHead({
+  title: computed(() => home.value.meta_title || 'NZIMA Ivan'),
+  meta: [
+    { name: 'description', content: computed(() => home.value?.meta_description || '')},
+    { name: 'og:title', content: computed(() => home.value?.meta_title || 'NZIMA Ivan')},
+    { name: 'og:description', content: computed(() => home.value?.meta_description || '' )},
+    { name: 'og:image', content: computed(() => home.value?.meta_image?.url || '')},
+    { name: 'og:type', content: 'website'},
+    { name: 'og:url', content: 'https://nzimaivan.com'},
+    { name: 'twitter:title', content: computed(() => home.value?.meta_title || 'NZIMA Ivan')},
+    { name: 'twitter:card', content: 'summary_large_image' }
+  ]
 })
 
 function animateBlocks() {

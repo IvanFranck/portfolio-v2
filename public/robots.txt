@@ -1,1 +1,42 @@
+# Règles globales pour tous les robots
+User-agent: *
+Allow: /
+Allow: /projects/
+Allow: /about
+Allow: /contact
 
+# Interdire l'accès aux pages d'administration et API
+Disallow: /admin/
+Disallow: /api/
+Disallow: /preview/
+Disallow: /slice-simulator/
+
+# Interdire l'indexation des paramètres de requête
+Disallow: /*?*
+
+# Sitemap
+Sitemap: https://nzimaivan.com/sitemap.xml
+
+# Règles spécifiques pour Googlebot
+User-agent: Googlebot
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+
+# Règles spécifiques pour Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+
+# Règles pour les réseaux sociaux
+User-agent: Twitterbot
+Allow: /
+User-agent: facebookexternalhit
+Allow: /

@@ -28,7 +28,7 @@
         </div> 
         <div class="lg:w-2/3 w-full"> 
           <ClientOnly>
-            <div class="w-full flex justify-start lg:justify-end gap-4 flex-wrap">
+            <div class="w-full flex justify-start lg:justify-end items-baseline gap-4 flex-wrap">
               <h2 class="font-display heading-h3 font-black">
                 {{ contact?.data.social_networks_addresses_label }}
               </h2>
@@ -41,6 +41,7 @@
                     <AppUnderlineLink
                       :to="social.link?.url"
                       external
+                      wrapper-class="link-item__inner"
                     >
                       ↗ {{ social.link.text }}
                     </AppUnderlineLink> 
@@ -65,3 +66,9 @@ const { data: contact} = useAsyncData('contact_page', async () => {
 
 
 </script>
+
+<style>
+.link-item__inner .link{
+  @apply text-base md:text-lg lg:text-xl;
+}
+</style>
